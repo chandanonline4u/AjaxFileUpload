@@ -21,21 +21,6 @@
   $uploadOk = 1;
   $fileType = pathinfo($target_file, PATHINFO_EXTENSION);
   
-  // Check if image file is a actual image or fake image
-  if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["file-upload"]["tmp_name"]);
-    if($check !== false) {
-      $uploadOk = 1;
-      $result['success'] = $uploadOk;
-      $result['message'] = "File is an image - " . $check["mime"] . ".";
-    } else {
-      $uploadOk = 0;
-      $result['success'] = $uploadOk;
-      $result['message'] = "File is not an image.";
-    }
-  }
-
-
   // Check file size
   if ($_FILES["file-upload"]["size"] > 500000) {
     $uploadOk = 0;
@@ -45,7 +30,6 @@
   
  
   // Allow certain file formats
-//  if($fileType <> "jpg" AND $fileType <> "png" AND $fileType <> "jpeg" AND $fileType <> "gif" ) {
   if($fileType <> "pdf" AND $fileType <> "doc" AND $fileType <> "docx" AND $fileType <> "xls" AND $fileType <> "xlsx" AND $fileType <> "csv" AND $fileType <> "jpg" AND $fileType <> "png") {
     $uploadOk = 0;
     $result['success'] = $uploadOk;
